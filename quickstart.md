@@ -33,7 +33,7 @@ A **tenant** in Auth0 is an isolated environment where you manage your applica
         
     - Add the following URLs:
         
-        - **Allowed Callback URLs**: `http://localhost:3000/api/auth/callback`
+        - **Allowed Callback URLs**: `http://localhost:3000/auth/callback`
             
             - This is where Auth0 will redirect users after they log in.
                 
