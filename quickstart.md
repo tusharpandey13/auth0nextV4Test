@@ -54,6 +54,7 @@ Run the following command to install the SDK:
 
 ```bash
 npm install @auth0/nextjs-auth0@beta
+```
 
 ---
 
