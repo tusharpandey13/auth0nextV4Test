@@ -52,10 +52,7 @@ The **Auth0 Next.js V4 SDK** simplifies integrating Auth0 into your Next.js ap
 
 Run the following command to install the SDK:
 
-bash
-
-Copy
-
+```bash
 npm install @auth0/nextjs-auth0@beta
 
 ---
@@ -64,16 +61,13 @@ npm install @auth0/nextjs-auth0@beta
 
 Environment variables are used to securely store sensitive information like your Auth0 credentials. Create a `.env.local` file in the root of your project and add the following:
 
-env
-
-Copy
-
+```env
 AUTH0_DOMAIN=your-auth0-domain
 AUTH0_CLIENT_ID=your-auth0-client-id
 AUTH0_CLIENT_SECRET=your-auth0-client-secret
 AUTH0_SECRET=a-random-secret-string
 APP_BASE_URL=http://localhost:3000
-
+```
 ### Explanation:
 
 - **AUTH0_DOMAIN**: Your Auth0 tenant domain (e.g., `your-tenant.auth0.com`).
@@ -93,14 +87,11 @@ The `Auth0Client` is the core of the SDK. It provides methods for handling aut
 
 Create a file named `auth0.ts` in the `src/lib` directory and add the following code:
 
-typescript
-
-Copy
-
+```typescript
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
 
 export const auth0 = new Auth0Client();
-
+```
 ### What’s Happening Here?
 
 - We import the `Auth0Client` class from the SDK.
@@ -116,10 +107,7 @@ Middleware in Next.js allows you to run code before a request is completed. In t
 
 Create a `middleware.ts` file in the root of your project (or inside the `src` directory if you’re using one):
 
-typescript
-
-Copy
-
+```typescript
 import type { NextRequest } from "next/server";
 import { auth0 } from "./lib/auth0";
 
@@ -138,7 +126,7 @@ export const config = {
     "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 };
-
+```
 ### Explanation:
 
 - The `middleware` function intercepts incoming requests and applies Auth0’s authentication logic.
@@ -154,10 +142,7 @@ The landing page (`src/app/page.tsx`) is where users will interact with your app
 
 Update the `src/app/page.tsx` file with the following code:
 
-tsx
-
-Copy
-
+```tsx
 import { auth0 } from "@/lib/auth0";
 import './globals.css';
 
@@ -191,7 +176,7 @@ export default async function Home() {
     </main>
   );
 }
-
+```
 ### Explanation:
 
 - **`auth0.getSession()`**: This method checks if the user is logged in by retrieving their session. If no session exists, it returns `null`.
@@ -215,11 +200,9 @@ The logout functionality is already included in the `page.tsx` file. When the 
 
 Start your Next.js development server:
 
-bash
-
-Copy
-
+```bash
 npm run dev
+```
 
 Visit `http://localhost:3000` in your browser. You should see:
 
