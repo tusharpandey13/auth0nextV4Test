@@ -1,0 +1,129 @@
+---
+marp: true
+theme: rose-pine
+# theme: rose-pine-dawn
+# theme: rose-pine-moon
+paginate: true
+---
+
+<!-- _class: lead -->
+# Auth0 Next.js SDK v4
+## Migration Guide & Feature Demo
+
+Presenter: Tushar Pandey
+Date: 30th January 2025
+
+---
+
+# Auth0 Next.js SDK V4 Feature Demo
+
+## Introduction to V4
+- Support for **Next.js 15** & React 19
+- **Edge-compatible** by default
+- Simplified architecture
+- Improved developer experience
+
+---
+
+## Problems in V3
+- Next 15 not supported
+- Access Token Management
+- Cookie Handling
+- use of Auth0Provider
+- Difficult to extend default session store 
+
+
+---
+
+## Changes in V4
+- Middleware-Based Authentication
+- Enhanced Access Token Management
+- Simplified Cookie Handling
+- New Hooks for Custom Logic
+- Stateful Sessions with Custom Database
+
+---
+
+## Middleware-Based Authentication
+### Why Middleware?
+- Aligns with Next.js conventions
+- Simplified setup
+- Better performance
+
+
+<!-- _header: Stateful Sessions with Redis -->
+---
+# Custom Session Store: Redis
+
+![bg right:40% 80%](/api/placeholder/400/300)
+
+- 🚀 **High Performance**
+- 💾 **Persistent Sessions**
+- ⚡ **Edge Compatible**
+- 🔄 **Automatic Scaling**
+
+---
+# Accessing the User
+
+---
+
+# Getting Access Tokens
+
+---
+
+
+# Custom hooks
+---
+
+
+### beforeSessionSaved
+```typescript
+export const auth0 = new Auth0Client({
+  async beforeSessionSaved(session, idToken) {
+    // Modify session data
+    return session
+  },
+})
+```
+
+### onCallback
+```typescript
+export const auth0 = new Auth0Client({
+  async onCallback(error, context, session) {
+    // Custom callback handling
+    return NextResponse.redirect(/* ... */)
+  },
+})
+```
+---
+
+<!-- _header: Cookie Management -->
+
+# Enhanced Cookie Handling
+
+```typescript
+// lib/auth0.ts
+export const auth0 = new Auth0Client({
+  cookie: {
+    name: 'auth_session',
+    // Production settings
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    // Using Redis TTL for consistency
+    maxAge: 24 * 60 * 60
+  }
+})
+```
+
+
+---
+
+## Conclusion
+- **V4 provides a more streamlined experience**
+- **Easier setup and configuration**
+- **Enhanced security and performance**
+- **Better alignment with Next.js features**
+
+---
+
+## Thank You
