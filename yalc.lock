@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "@auth0/nextjs-auth0": {
+      "version": "4.0.1",
+      "signature": "da299ade8fa79b7cdef7169cfc9f1e9f",
+      "file": true,
+      "replaced": "file:auth0-nextjs-auth0-4.0.1.tgz"
+    }
+  }
+}
