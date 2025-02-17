@@ -4,16 +4,18 @@ import Profile from "@/app/components/Profile";
 export default async function DashboardPage() {
   let accessToken: string = "";
   let fcat: string = "";
+  let events = [];
+  const error = null;
   try {
     const session = await auth0.getSession();
     if (session){
+      // get auth0 accessToken
       accessToken = (await auth0.getAccessToken()).token;
-      fcat = (await auth0.getFederatedConnectionAccessToken({connection: "google-oauth2"})).token;
-    }
-    let events = [];
-    let error = null;
 
-    try {
+      // get cached FCAT
+      fcat = (await auth0.getFederatedConnectionAccessToken({connection: "google-oauth2"})).token;
+
+      // get google calendar data
       const response = await fetch(
         `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${new Date().toISOString()}&maxResults=10&singleEvents=true&orderBy=startTime`,
         {
@@ -31,9 +33,6 @@ export default async function DashboardPage() {
 
       const data = await response.json();
       events = data.items || [];
-    } catch (e: any) {
-      error = e.message || "Failed to fetch events.";
-      // console.error("Error fetching Google Calendar events:", e);
     }
 
     return (
