@@ -3,7 +3,7 @@
   "packages": {
     "@auth0/nextjs-auth0": {
       "version": "4.0.1",
-      "signature": "da299ade8fa79b7cdef7169cfc9f1e9f",
+      "signature": "2702961781777975fc2f4acf798ff5e2",
       "file": true,
       "replaced": "file:auth0-nextjs-auth0-4.0.1.tgz"
     }
